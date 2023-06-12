@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="breadboard_with_nano">
+
+  <!-- Define the world frame -->
+  <link name="map"/>
+
+  <!-- Define the breadboard as the base link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.15 0.1 0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.15 0.1 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Define the Arduino Nano link -->
+  <link name="nano">
+    <visual>
+      <origin xyz="0.02 0.01 0.01" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.02 0.01 0.01" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Define the joints -->
+  <joint name="map_to_base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="map"/>
+    <child link="base_link"/>
+  </joint>
+
+  <joint name="base_to_nano" type="fixed">
+    <origin xyz="0.05 0.05 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="nano"/>
+  </joint>
+
+</robot>
+
